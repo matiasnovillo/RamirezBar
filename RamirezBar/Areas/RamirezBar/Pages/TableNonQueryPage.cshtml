@@ -1,4 +1,5 @@
 @page
+@using RamirezBar.Areas.CMSCore.Models
 @using RamirezBar.Areas.RamirezBar.Models
 @model RamirezBar.Areas.RamirezBar.Pages.TableNonQueryPageModel
 @{
@@ -12,7 +13,9 @@
     string Photo;
     int UserWaiterId;
     int TableStateId;
-    
+    int WinningMoney;
+    string UserWaiterName;
+    string TableStateName;
 
     if(HttpContext.Request.QueryString.Value.Contains("?TableId=0"))
     {
@@ -24,7 +27,10 @@
         Photo = "";
         UserWaiterId = 0;
         TableStateId = 0;
-        
+        WinningMoney = 0;
+        UserWaiterName = "Elije un mozo";
+        TableStateName = "Libre";
+
     }
     else
     {
@@ -39,8 +45,17 @@
         Photo = TableModel.Photo;
         UserWaiterId = TableModel.UserWaiterId;
         TableStateId = TableModel.TableStateId;
-        
+        WinningMoney = TableModel.WinningMoney;
+
+        UserModel UserModel = new UserModel(TableModel.UserWaiterId);
+        UserWaiterName = UserModel.FantasyName;
+
+        TableStateModel TableStateModel = new TableStateModel(TableModel.TableStateId);
+        TableStateName = TableStateModel.Name;
     }
+
+    List<UserModel> lstUserModel = new UserModel().SelectAllToList();
+    List<TableStateModel> lstTableStateModel = new TableStateModel().SelectAllToList();
 
 /*
  * GUID:e6c09dfe-3a3e-461b-b3f9-734aee05fc7b
@@ -54,7 +69,7 @@
  */
     
 //Stack: 11
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 }
 <!-- Header -->
@@ -187,13 +202,13 @@
                         <!-- UserWaiterId -->
                             <div class="form-group mb-3">
                                 <label class="form-control-label">
-                                    <i class="fas fa-hashtag"></i> UserWaiterId
+                                    <i class="fas fa-hashtag"></i> Mozo
                                 </label>
                                 <br/>
                                 <button type="button" 
                                     class="btn btn-outline-primary border-0" 
                                     data-toggle="modal" 
-                                    data-target="#modal-foreign-key-code-selector">
+                                    data-target="#modal-userwaiterid-selector">
                                         <i class="fas fa-hashtag"></i>
                                 </button>
                                 <ul id="ramirezbar-table-userwaiterid-list"
@@ -206,7 +221,7 @@
                                             role="tab" 
                                             aria-controls="" 
                                             aria-selected="true">
-                                                Choose a value
+                                                @UserWaiterName
                                         </a>
                                         <input type="hidden" 
                                             id="ramirezbar-table-userwaiterid-input"
@@ -226,7 +241,7 @@
                                 <button type="button" 
                                     class="btn btn-outline-primary border-0" 
                                     data-toggle="modal" 
-                                    data-target="#modal-foreign-key-code-selector">
+                                    data-target="#modal-tablestateid-selector">
                                         <i class="fas fa-hashtag"></i>
                                 </button>
                                 <ul id="ramirezbar-table-tablestateid-list"
@@ -239,15 +254,34 @@
                                             role="tab" 
                                             aria-controls="" 
                                             aria-selected="true">
-                                                Choose a value
+                                                @TableStateName
                                         </a>
                                         <input type="hidden" 
                                             id="ramirezbar-table-tablestateid-input"
                                             value="@TableStateId"/>
                                     </li>
                                 </ul>
-                                
+                                <p class="text-danger text-sm">
+                                    <b>This value is required.</b>
+                                </p>
                             </div>
+                        <!-- WinningMoney -->
+                        <div class="form-group mb-3">
+                            <label for="ramirezbar-table-winningmoney-input" class="form-control-label">
+                                <i class="fas fa-divide"></i> 
+                                WinningMoney
+                            </label>
+                            <input class="form-control" 
+                                type="number" 
+                                id="ramirezbar-table-winningmoney-input" 
+                                value="@WinningMoney" 
+                                min="0" 
+                                max="999999" 
+                                step="1" 
+                                pattern="[^0-9]"
+                                />
+                            
+                        </div>
                         
                         <!-- Buttons -->
                         <div class="row justify-content-between">
@@ -272,11 +306,11 @@
     </div>
 </div>
 
-<!-- ForeignKeyDropDown selector in Modal style -->
+<!-- TableStateId selector in Modal style -->
 <div class="row">
     <div class="col-md-4">
         <!-- Modal -->
-        <div class="modal fade" id="modal-foreign-key-code-selector" tabindex="-1" role="dialog" aria-labelledby="modal-foreign-key-selector" aria-hidden="true">
+        <div class="modal fade" id="modal-tablestateid-selector" tabindex="-1" role="dialog" aria-labelledby="modal-foreign-key-selector" aria-hidden="true">
             <div class="modal-dialog modal-secondary modal-dialog-centered modal-" role="document">
                 <!-- Modal content -->
                 <div class="modal-content bg-gradient-secondary">
@@ -289,8 +323,56 @@
                         <form role="form">
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative">
-                                    <select id="ramirezbar-table-foreignkeydropdown-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
+                                    <select id="ramirezbar-table-tablestateid-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
                                         <option value="0"></option> <!--This must be empty-->
+                                        @{
+                                            foreach (TableStateModel TableStateModel in lstTableStateModel)
+                                            {
+                                                <option value="@TableStateModel.TableStateId" >@TableStateModel.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- UserWaiterId selector in Modal style -->
+<div class="row">
+    <div class="col-md-4">
+        <!-- Modal -->
+        <div class="modal fade" id="modal-userwaiterid-selector" tabindex="-1" role="dialog" aria-labelledby="modal-foreign-key-selector" aria-hidden="true">
+            <div class="modal-dialog modal-secondary modal-dialog-centered modal-" role="document">
+                <!-- Modal content -->
+                <div class="modal-content bg-gradient-secondary">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-primary">
+                            Choose a waiter <i class="fas fa-hashtag"></i>
+                         </h6>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative">
+                                    <select id="ramirezbar-table-userwaiterid-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
+                                        <option value="0"></option> <!--This must be empty-->
+                                        @{
+                                            foreach (UserModel UserModel in lstUserModel)
+                                            {
+                                                if (UserModel.RoleId == 3) //Waiter ID
+                                                {
+                                                    <option value="@UserModel.UserId" >@UserModel.FantasyName</option>
+                                                }
+                                                
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </div>

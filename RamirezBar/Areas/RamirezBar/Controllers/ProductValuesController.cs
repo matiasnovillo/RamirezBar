@@ -25,7 +25,7 @@ using System.IO;
  * 
  */
 
-//Last modification on: 20/08/2023 23:17:57
+//Last modification on: 21/08/2023 6:49:20
 
 namespace RamirezBar.Areas.RamirezBar.Controllers
 {
@@ -33,7 +33,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
     /// Stack:             6<br/>
     /// Name:              C# Web API Controller. <br/>
     /// Function:          Allow you to intercept HTPP calls and comunicate with his C# Service using dependency injection.<br/>
-    /// Last modification: 20/08/2023 23:17:57
+    /// Last modification: 21/08/2023 6:49:20
     /// </summary>
     [ApiController]
     [ProductFilter]
@@ -179,6 +179,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                 {
                     Photo = $@"/Uploads/RamirezBar/Product/{HttpContext.Request.Form.Files[0].FileName}";
                 }
+                int Price = Convert.ToInt32(HttpContext.Request.Form["ramirezbar-product-price-input"]);
                 
                 #endregion
 
@@ -199,6 +200,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                         Name = Name,
                         Stock = Stock,
                         Photo = Photo,
+                        Price = Price,
                         
                     };
                     
@@ -215,6 +217,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                     ProductModel.Name = Name;
                     ProductModel.Stock = Stock;
                     ProductModel.Photo = Photo;
+                    ProductModel.Price = Price;
                                        
 
                     RowsAffected = _IProduct.UpdateByProductId(ProductModel);

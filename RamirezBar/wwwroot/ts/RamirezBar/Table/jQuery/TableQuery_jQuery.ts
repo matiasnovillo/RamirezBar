@@ -20,7 +20,7 @@ import "bootstrap-notify";
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 //Set default values
 let LastTopDistance: number = 0;
@@ -53,48 +53,23 @@ class TableQuery {
             </button>
         </th>
         <th scope="col">
-            <button value="Active" class="btn btn-outline-secondary btn-sm" type="button">
-                Active
-            </button>
-        </th>
-        <th scope="col">
-            <button value="DateTimeCreation" class="btn btn-outline-secondary btn-sm" type="button">
-                DateTimeCreation
-            </button>
-        </th>
-        <th scope="col">
-            <button value="DateTimeLastModification" class="btn btn-outline-secondary btn-sm" type="button">
-                DateTimeLastModification
-            </button>
-        </th>
-        <th scope="col">
-            <button value="UserCreationId" class="btn btn-outline-secondary btn-sm" type="button">
-                UserCreationId
-            </button>
-        </th>
-        <th scope="col">
-            <button value="UserLastModificationId" class="btn btn-outline-secondary btn-sm" type="button">
-                UserLastModificationId
-            </button>
-        </th>
-        <th scope="col">
             <button value="Name" class="btn btn-outline-secondary btn-sm" type="button">
-                Name
-            </button>
-        </th>
-        <th scope="col">
-            <button value="Photo" class="btn btn-outline-secondary btn-sm" type="button">
-                Photo
+                Nombre de mesa
             </button>
         </th>
         <th scope="col">
             <button value="UserWaiterId" class="btn btn-outline-secondary btn-sm" type="button">
-                UserWaiterId
+                Mozo
             </button>
         </th>
         <th scope="col">
             <button value="TableStateId" class="btn btn-outline-secondary btn-sm" type="button">
-                TableStateId
+                Estado
+            </button>
+        </th>
+        <th scope="col">
+            <button value="WinningMoney" class="btn btn-outline-secondary btn-sm" type="button">
+                Ganancia por cliente
             </button>
         </th>
         
@@ -173,50 +148,23 @@ class TableQuery {
         <i class="fas fa-key"></i> ${row.TableId}
     </td>
     <td class="text-left">
-        <strong>
-            <i class="fas fa-toggle-on"></i> ${row.Active == true ? "Active <i class='text-success fas fa-circle'></i>" : "Not active <i class='text-danger fas fa-circle'></i>"}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-calendar"></i> ${row.DateTimeCreation}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-calendar"></i> ${row.DateTimeLastModification}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-key"></i> ${row.UserCreationId}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-key"></i> ${row.UserLastModificationId}
-        </strong>
-    </td>
-    <td class="text-left">
         <strong><i class="fas fa-font">
             </i> ${row.Name}
         </strong>
     </td>
     <td class="text-left">
-        <a href="${row.Photo}">
-            <strong>
-                <i class="fas fa-file"></i> ${row.Photo}
-            </strong>
-        </a>
-    </td>
-    <td class="text-left">
         <strong>
-            <i class="fas fa-key"></i> ${row.UserWaiterId}
+            <i class="fas fa-key"></i> ${row.UserWaiterFantasyName}
         </strong>
     </td>
     <td class="text-left">
         <strong>
-            <i class="fas fa-key"></i> ${row.TableStateId}
+            <i class="fas fa-key"></i> ${row.TableStateName}
+        </strong>
+    </td>
+    <td class="text-left">
+        <strong><i class="fas fa-divide">
+            </i> ${row.WinningMoney}
         </strong>
     </td>
     
@@ -259,39 +207,19 @@ class TableQuery {
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           Active <i class="fas fa-toggle-on"></i> ${row.Active == true ? "Active <i class='text-success fas fa-circle'></i>" : "Not active <i class='text-danger fas fa-circle'></i>"}
+                           Nombre de mesa <i class="fas fa-font"></i> ${row.Name}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           DateTimeCreation <i class="fas fa-calendar"></i> ${row.DateTimeCreation}
+                           Mozo encargado <i class="fas fa-key"></i> ${row.UserWaiterFantasyName}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           DateTimeLastModification <i class="fas fa-calendar"></i> ${row.DateTimeLastModification}
+                           Estado <i class="fas fa-key"></i> ${row.TableStateName}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           UserCreationId <i class="fas fa-key"></i> ${row.UserCreationId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           UserLastModificationId <i class="fas fa-key"></i> ${row.UserLastModificationId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           Name <i class="fas fa-font"></i> ${row.Name}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           Photo <i class="fas fa-file"></i> ${row.Photo}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           UserWaiterId <i class="fas fa-key"></i> ${row.UserWaiterId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           TableStateId <i class="fas fa-key"></i> ${row.TableStateId}
+                            WinningMoney <i class="fas fa-divide"></i> ${row.WinningMoney}
                         </span>
                         <br/>
                         

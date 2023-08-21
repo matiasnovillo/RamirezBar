@@ -15,7 +15,7 @@ import { productSelectAllPaged } from "../DTOs/productSelectAllPaged";
  * 
 */
 
-//10 fields | Sub-models: 0 models  | Last modification on: 20/08/2023 23:17:57 | Stack: 9
+//11 fields | Sub-models: 0 models  | Last modification on: 21/08/2023 6:49:20 | Stack: 9
 
 export class ProductModel {
 
@@ -30,6 +30,7 @@ export class ProductModel {
 	Name?: string | string[] | number | undefined;
 	Stock?: number;
 	Photo?: string | string[] | number | undefined;
+	Price?: number;
     
 
     //Queries

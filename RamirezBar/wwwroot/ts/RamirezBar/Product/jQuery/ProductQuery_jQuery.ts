@@ -20,7 +20,7 @@ import "bootstrap-notify";
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:17:57
+//Last modification on: 21/08/2023 6:49:20
 
 //Set default values
 let LastTopDistance: number = 0;
@@ -95,6 +95,11 @@ class ProductQuery {
         <th scope="col">
             <button value="Photo" class="btn btn-outline-secondary btn-sm" type="button">
                 Photo
+            </button>
+        </th>
+        <th scope="col">
+            <button value="Price" class="btn btn-outline-secondary btn-sm" type="button">
+                Price
             </button>
         </th>
         
@@ -219,6 +224,11 @@ class ProductQuery {
             </strong>
         </a>
     </td>
+    <td class="text-left">
+        <strong><i class="fas fa-divide">
+            </i> ${row.Price}
+        </strong>
+    </td>
     
     <!-- Actions -->
     <td class="text-right">
@@ -292,6 +302,10 @@ class ProductQuery {
                         <br/>
                         <span class="text-white mb-4">
                            Photo <i class="fas fa-file"></i> ${row.Photo}
+                        </span>
+                        <br/>
+                        <span class="text-white mb-4">
+                            Price <i class="fas fa-divide"></i> ${row.Price}
                         </span>
                         <br/>
                         

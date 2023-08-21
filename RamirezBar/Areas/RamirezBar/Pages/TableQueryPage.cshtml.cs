@@ -16,7 +16,7 @@ using System.Collections.Generic;
  * 
  */
 
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 namespace RamirezBar.Areas.RamirezBar.Pages
 {
@@ -24,7 +24,7 @@ namespace RamirezBar.Areas.RamirezBar.Pages
     /// Stack:             9 <br/>
     /// Name:              C# Razor Page. <br/>
     /// Function:          Allow you to show HTML files using Razor Page technology. <br/>
-    /// Last modification: 20/08/2023 23:27:14
+    /// Last modification: 21/08/2023 6:56:48
     /// </summary>
     [TableFilter]
     public partial class TableQueryPageModel : PageModel

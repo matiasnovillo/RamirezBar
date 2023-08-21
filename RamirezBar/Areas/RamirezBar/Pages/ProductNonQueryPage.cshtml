@@ -12,6 +12,7 @@
     string Name;
     int Stock;
     string Photo;
+    int Price;
     
 
     if(HttpContext.Request.QueryString.Value.Contains("?ProductId=0"))
@@ -24,6 +25,7 @@
         Name = "";
         Stock = 0;
         Photo = "";
+        Price = 0;
         
     }
     else
@@ -39,6 +41,7 @@
         Name = ProductModel.Name;
         Stock = ProductModel.Stock;
         Photo = ProductModel.Photo;
+        Price = ProductModel.Price;
         
     }
 
@@ -54,7 +57,7 @@
  */
     
 //Stack: 11
-//Last modification on: 20/08/2023 23:17:57
+//Last modification on: 21/08/2023 6:49:20
 
 }
 <!-- Header -->
@@ -233,6 +236,23 @@
                                         Download file
                                 </a>
                             }
+                        </div>
+                        <!-- Price -->
+                        <div class="form-group mb-3">
+                            <label for="ramirezbar-product-price-input" class="form-control-label">
+                                <i class="fas fa-divide"></i> 
+                                Price
+                            </label>
+                            <input class="form-control" 
+                                type="number" 
+                                id="ramirezbar-product-price-input" 
+                                value="@Price" 
+                                min="0" 
+                                max="999999" 
+                                step="1" 
+                                pattern="[^0-9]"
+                                />
+                            
                         </div>
                         
                         <!-- Buttons -->

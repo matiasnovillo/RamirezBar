@@ -13,7 +13,7 @@ var ajax_1 = require("rxjs/ajax");
  * in all copies or substantial portions of the Software.
  *
 */
-//10 fields | Sub-models: 0 models  | Last modification on: 20/08/2023 23:27:14 | Stack: 9
+//11 fields | Sub-models: 0 models  | Last modification on: 21/08/2023 6:56:48 | Stack: 9
 var TableModel = /** @class */ (function () {
     function TableModel() {
     }

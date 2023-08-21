@@ -15,7 +15,7 @@ using System.Collections.Generic;
  * 
  */
 
-//Last modification on: 20/08/2023 23:17:57
+//Last modification on: 21/08/2023 6:49:20
 
 namespace RamirezBar.Areas.RamirezBar.Interfaces
 {
@@ -25,7 +25,7 @@ namespace RamirezBar.Areas.RamirezBar.Interfaces
     /// Function:          This interface allow you to standardize the C# service associated. 
     ///                    In other words, define the functions that has to implement the C# service. <br/>
     /// Note:              Raise exception in case of missing any function declared here but not in the service. <br/>
-    /// Last modification: 20/08/2023 23:17:57
+    /// Last modification: 21/08/2023 6:49:20
     /// </summary>
     public partial interface IProduct
     {

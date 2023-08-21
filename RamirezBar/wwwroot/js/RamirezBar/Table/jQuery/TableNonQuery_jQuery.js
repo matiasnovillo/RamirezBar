@@ -13,7 +13,7 @@
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 //Create a formdata object
 var formData = new FormData();
@@ -34,7 +34,25 @@ $("#ramirezbar-table-photo-input").on("change", function (e) {
 
 //LOAD EVENT
 $(document).ready(function () {
-    
+    //UserWaiterId select tag
+    $("#ramirezbar-table-userwaiterid-select").on("change", function (e) {
+        $("#ramirezbar-table-userwaiterid-list").html(`<li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="" aria-selected="true">
+                ${$("#ramirezbar-table-userwaiterid-select option:selected").text()}
+            </a>
+            <input type="hidden" id="ramirezbar-table-userwaiterid-input" value="${$("#ramirezbar-table-userwaiterid-select option:selected").val()}"/>
+        </li>`);
+    });
+
+    //TableStateId select tag
+    $("#ramirezbar-table-tablestateid-select").on("change", function (e) {
+        $("#ramirezbar-table-tablestateid-list").html(`<li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="" aria-selected="true">
+                ${$("#ramirezbar-table-tablestateid-select option:selected").text()}
+            </a>
+            <input type="hidden" id="ramirezbar-table-tablestateid-input" value="${$("#ramirezbar-table-tablestateid-select option:selected").val()}"/>
+        </li>`);
+    });
     
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName("needs-validation");
@@ -56,6 +74,7 @@ $(document).ready(function () {
                 }
                 formData.append("ramirezbar-table-userwaiterid-input", $("#ramirezbar-table-userwaiterid-input").val());
                 formData.append("ramirezbar-table-tablestateid-input", $("#ramirezbar-table-tablestateid-input").val());
+                formData.append("ramirezbar-table-winningmoney-input", $("#ramirezbar-table-winningmoney-input").val());
                 
 
                 //Setup request

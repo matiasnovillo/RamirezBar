@@ -25,7 +25,7 @@ using System.IO;
  * 
  */
 
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 namespace RamirezBar.Areas.RamirezBar.Controllers
 {
@@ -33,7 +33,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
     /// Stack:             6<br/>
     /// Name:              C# Web API Controller. <br/>
     /// Function:          Allow you to intercept HTPP calls and comunicate with his C# Service using dependency injection.<br/>
-    /// Last modification: 20/08/2023 23:27:14
+    /// Last modification: 21/08/2023 6:56:48
     /// </summary>
     [ApiController]
     [TableFilter]
@@ -185,6 +185,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                 }
                 else
                 { return StatusCode(400, "It's not allowed to save zero values in TableStateId"); }
+                int WinningMoney = Convert.ToInt32(HttpContext.Request.Form["ramirezbar-table-winningmoney-input"]);
                 
                 #endregion
 
@@ -205,6 +206,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                         Photo = Photo,
                         UserWaiterId = UserWaiterId,
                         TableStateId = TableStateId,
+                        WinningMoney = WinningMoney,
                         
                     };
                     
@@ -221,6 +223,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                     TableModel.Photo = Photo;
                     TableModel.UserWaiterId = UserWaiterId;
                     TableModel.TableStateId = TableStateId;
+                    TableModel.WinningMoney = WinningMoney;
                                        
 
                     RowsAffected = _ITable.UpdateByTableId(TableModel);

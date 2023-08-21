@@ -27,9 +27,9 @@ namespace RamirezBar.Areas.RamirezBar.Models
     /// Function:          Allow you to manipulate information from database using stored procedures.
     ///                    Also, let you make other related actions with the model in question or
     ///                    make temporal copies with random data. <br/>
-    /// Fields:            10 <br/> 
+    /// Fields:            11 <br/> 
     /// Sub-models:      0 models <br/>
-    /// Last modification: 20/08/2023 23:17:57
+    /// Last modification: 21/08/2023 6:49:20
     /// </summary>
     [Serializable]
     public partial class ProductModel
@@ -81,6 +81,9 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
         [Library.ModelAttributeValidator.String("Photo", false, 1, 8000, "")]
         public string Photo { get; set; }
+
+        [Library.ModelAttributeValidator.Int("Price", false, 0, 999999)]
+        public int Price { get; set; }
         #endregion
 
         #region Sub-lists
@@ -93,7 +96,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Function:     Create fastly this model with field ProductId = 0 <br/>
         /// Note 1:       Generally used to have fast access to functions of object. <br/>
         /// Note 2:       Need construction with [new] reserved word, as all constructors. <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public ProductModel()
@@ -112,7 +115,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with stored information in database using ProductId <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public ProductModel(int ProductId)
@@ -151,6 +154,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					this.Name = product.Name;
 					this.Stock = product.Stock;
 					this.Photo = product.Photo;
+					this.Price = product.Price;
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -161,10 +165,10 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with filled parameters <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
-        public ProductModel(int ProductId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo)
+        public ProductModel(int ProductId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo, int Price)
         {
             try
             {
@@ -181,6 +185,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				this.Name = Name;
 				this.Stock = Stock;
 				this.Photo = Photo;
+				this.Price = Price;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -189,7 +194,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model (copy) using the given model (original), product, passed by parameter. <br/>
         /// Note:         This constructor is generally used to execute functions using the copied fields <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public ProductModel(ProductModel product)
@@ -209,6 +214,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				Name = product.Name;
 				Stock = product.Stock;
 				Photo = product.Photo;
+				Price = product.Price;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -320,6 +326,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					ProductModel.Name = product.Name;
 					ProductModel.Stock = product.Stock;
 					ProductModel.Photo = product.Photo;
+					ProductModel.Price = product.Price;
                 }
 
                 return ProductModel;
@@ -395,6 +402,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -432,6 +440,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", product.Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", product.Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", product.Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", product.Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
                 
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -452,7 +461,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull insertion in database
         /// </summary>
         /// <returns>The ID of the last registry inserted in Product table</returns>
-        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo)
+        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo, int Price)
         {
             try
             {
@@ -469,6 +478,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -507,6 +517,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -545,6 +556,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", product.Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", product.Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", product.Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", product.Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -565,7 +577,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull update in database
         /// </summary>
         /// <returns>The number of rows updated in Product table</returns>
-        public int UpdateByProductId(int ProductId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo)
+        public int UpdateByProductId(int ProductId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, int ProviderId, string Name, int Stock, string Photo, int Price)
         {
             try
             {
@@ -583,6 +595,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
 				dp.Add("Stock", Stock, DbType.Int32, ParameterDirection.Input);
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
+				dp.Add("Price", Price, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -712,7 +725,8 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				$"ProviderId: {ProviderId}, " +
 				$"Name: {Name}, " +
 				$"Stock: {Stock}, " +
-				$"Photo: {Photo}";
+				$"Photo: {Photo}, " +
+				$"Price: {Price}";
         }
 
         public string ToStringOnlyValuesForHTML()
@@ -776,6 +790,12 @@ namespace RamirezBar.Areas.RamirezBar.Models
         <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
         <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
             <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{Photo}</span>
+        </font>
+        <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
+    </td><td align=""left"" valign=""top"">
+        <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
+        <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
+            <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{Price}</span>
         </font>
         <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
     </td>

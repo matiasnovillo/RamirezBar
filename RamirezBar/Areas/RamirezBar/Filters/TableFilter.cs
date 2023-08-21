@@ -13,7 +13,7 @@ using System;
  * 
  */
 
-//Last modification on: 20/08/2023 23:27:14
+//Last modification on: 21/08/2023 6:56:48
 
 namespace RamirezBar.Areas.RamirezBar.Filters
 {
@@ -21,7 +21,7 @@ namespace RamirezBar.Areas.RamirezBar.Filters
     /// Stack:             7 <br/>
     /// Name:              C# Filter. <br/>
     /// Function:          Allow you to intercept HTPP inside a pipeline.<br/>
-    /// Last modification: 20/08/2023 23:27:14
+    /// Last modification: 21/08/2023 6:56:48
     /// </summary>
     public class TableFilter : ActionFilterAttribute
     {

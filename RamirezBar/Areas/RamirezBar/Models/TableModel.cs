@@ -27,9 +27,9 @@ namespace RamirezBar.Areas.RamirezBar.Models
     /// Function:          Allow you to manipulate information from database using stored procedures.
     ///                    Also, let you make other related actions with the model in question or
     ///                    make temporal copies with random data. <br/>
-    /// Fields:            10 <br/> 
+    /// Fields:            11 <br/> 
     /// Sub-models:      0 models <br/>
-    /// Last modification: 20/08/2023 23:27:14
+    /// Last modification: 21/08/2023 6:56:48
     /// </summary>
     [Serializable]
     public partial class TableModel
@@ -81,10 +81,17 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
         [Library.ModelAttributeValidator.Key("TableStateId")]
         public int TableStateId { get; set; }
+
+        [Library.ModelAttributeValidator.Int("WinningMoney", false, 0, 999999)]
+        public int WinningMoney { get; set; }
+
+        public string TableStateName { get; set; }
+
+        public string UserWaiterFantasyName { get; set; }
         #endregion
 
         #region Sub-lists
-        
+
         #endregion
 
         #region Constructors
@@ -93,7 +100,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Function:     Create fastly this model with field TableId = 0 <br/>
         /// Note 1:       Generally used to have fast access to functions of object. <br/>
         /// Note 2:       Need construction with [new] reserved word, as all constructors. <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public TableModel()
@@ -112,7 +119,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with stored information in database using TableId <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public TableModel(int TableId)
@@ -151,6 +158,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					this.Photo = table.Photo;
 					this.UserWaiterId = table.UserWaiterId;
 					this.TableStateId = table.TableStateId;
+					this.WinningMoney = table.WinningMoney;
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -161,10 +169,10 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with filled parameters <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
-        public TableModel(int TableId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId)
+        public TableModel(int TableId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId, int WinningMoney)
         {
             try
             {
@@ -181,6 +189,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				this.Photo = Photo;
 				this.UserWaiterId = UserWaiterId;
 				this.TableStateId = TableStateId;
+				this.WinningMoney = WinningMoney;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -189,7 +198,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model (copy) using the given model (original), table, passed by parameter. <br/>
         /// Note:         This constructor is generally used to execute functions using the copied fields <br/>
-        /// Fields:       10 <br/> 
+        /// Fields:       11 <br/> 
         /// Dependencies: 0 models depend on this model <br/>
         /// </summary>
         public TableModel(TableModel table)
@@ -209,6 +218,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				Photo = table.Photo;
 				UserWaiterId = table.UserWaiterId;
 				TableStateId = table.TableStateId;
+				WinningMoney = table.WinningMoney;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -320,6 +330,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					TableModel.Photo = table.Photo;
 					TableModel.UserWaiterId = table.UserWaiterId;
 					TableModel.TableStateId = table.TableStateId;
+					TableModel.WinningMoney = table.WinningMoney;
                 }
 
                 return TableModel;
@@ -359,7 +370,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
                 {
-                    tableSelectAllPaged.lstTableModel = (List<TableModel>)sqlConnection.Query<TableModel>("[dbo].[RamirezBar.Table.SelectAllPaged]", dp, commandType: CommandType.StoredProcedure);
+                    tableSelectAllPaged.lstTableModel = (List<TableModel>)sqlConnection.Query<TableModel>("[dbo].[RamirezBar.Table.SelectAllPagedCustom]", dp, commandType: CommandType.StoredProcedure);
                     tableSelectAllPaged.TotalRows = dp.Get<int>("TotalRows");
                 }
 
@@ -395,6 +406,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -432,6 +444,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", table.Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", table.UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", table.TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", table.WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
                 
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -452,7 +465,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull insertion in database
         /// </summary>
         /// <returns>The ID of the last registry inserted in Table table</returns>
-        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId)
+        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId, int WinningMoney)
         {
             try
             {
@@ -469,6 +482,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -507,6 +521,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -545,6 +560,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", table.Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", table.UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", table.TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", table.WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -565,7 +581,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull update in database
         /// </summary>
         /// <returns>The number of rows updated in Table table</returns>
-        public int UpdateByTableId(int TableId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId)
+        public int UpdateByTableId(int TableId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name, string Photo, int UserWaiterId, int TableStateId, int WinningMoney)
         {
             try
             {
@@ -583,6 +599,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("Photo", Photo, DbType.String, ParameterDirection.Input);
 				dp.Add("UserWaiterId", UserWaiterId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("TableStateId", TableStateId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("WinningMoney", WinningMoney, DbType.Int32, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -712,7 +729,8 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				$"Name: {Name}, " +
 				$"Photo: {Photo}, " +
 				$"UserWaiterId: {UserWaiterId}, " +
-				$"TableStateId: {TableStateId}";
+				$"TableStateId: {TableStateId}, " +
+				$"WinningMoney: {WinningMoney}";
         }
 
         public string ToStringOnlyValuesForHTML()
@@ -776,6 +794,12 @@ namespace RamirezBar.Areas.RamirezBar.Models
         <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
         <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
             <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{TableStateId}</span>
+        </font>
+        <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
+    </td><td align=""left"" valign=""top"">
+        <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
+        <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
+            <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{WinningMoney}</span>
         </font>
         <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
     </td>

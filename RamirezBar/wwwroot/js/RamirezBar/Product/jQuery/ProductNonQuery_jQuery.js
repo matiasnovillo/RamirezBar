@@ -13,7 +13,7 @@
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:17:57
+//Last modification on: 21/08/2023 6:49:20
 
 //Create a formdata object
 var formData = new FormData();
@@ -56,6 +56,7 @@ $(document).ready(function () {
                 if (!ramirezbarproductphotoboolfileadded) {
                     formData.append("ramirezbar-product-photo-input", $("#ramirezbar-product-photo-readonly").val());
                 }
+                formData.append("ramirezbar-product-price-input", $("#ramirezbar-product-price-input").val());
                 
 
                 //Setup request
