@@ -1,0 +1,327 @@
+@page
+@using RamirezBar.Areas.RamirezBar.Models
+@model RamirezBar.Areas.RamirezBar.Pages.ProductNonQueryPageModel
+@{
+    Layout = "_LayoutDashboard";
+
+    string NonQueryText = "";
+    string NonQueryIcon = "";
+
+    int ProductId;
+    int ProviderId;
+    string Name;
+    int Stock;
+    string Photo;
+    
+
+    if(HttpContext.Request.QueryString.Value.Contains("?ProductId=0"))
+    {
+        NonQueryText = "Add";
+        NonQueryIcon = "fas fa-plus";
+
+        ProductId = 0;
+        ProviderId = 0;
+        Name = "";
+        Stock = 0;
+        Photo = "";
+        
+    }
+    else
+    {
+        NonQueryText = "Edit";
+        NonQueryIcon = "fas fa-pen";
+
+        ProductModel ProductModel = new ProductModel().Select1ByProductIdToModel
+        (Convert.ToInt32(HttpContext.Request.QueryString.Value.Replace("?ProductId=","")));
+
+        ProductId = ProductModel.ProductId;
+        ProviderId = ProductModel.ProviderId;
+        Name = ProductModel.Name;
+        Stock = ProductModel.Stock;
+        Photo = ProductModel.Photo;
+        
+    }
+
+/*
+ * GUID:e6c09dfe-3a3e-461b-b3f9-734aee05fc7b
+ * 
+ * Coded by fiyistack.com
+ * Copyright © 2023
+ * 
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ * 
+ */
+    
+//Stack: 11
+//Last modification on: 20/08/2023 23:17:57
+
+}
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <!-- Header body -->
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <!-- Title -->
+                    <h2 class="h2 text-white d-inline-block mb-0">
+                        @NonQueryText 
+                        product
+                    </h2>
+                    <input type="hidden" 
+                        id="ramirezbar-product-productid-input" 
+                        value="@ProductId"/>
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item">
+                                <a href="/CMSCore/DashboardIndex">
+                                    <i class="fas fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0)">
+                                    RamirezBar
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0)">
+                                    Product
+                                 </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <i class="@NonQueryIcon"></i>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-6 col-5 text-right">
+                    <!-- XL Screens -->
+                    <div class="d-none d-xl-inline">
+                        <a href="/RamirezBar/ProductQueryPage" class="btn btn-secondary">
+                            <i class="fas fa-angle-left"></i> Go back
+                        </a>
+                    </div>
+                    <!-- Other Screens -->
+                    <div class="d-inline d-sm-inline d-md-inline d-lg-inline d-xl-none">
+                        <a href="/RamirezBar/ProductQueryPage" class="btn btn-secondary">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+<div class="row">
+    <div class="col">
+            <!-- Card -->
+            <div class="card">
+                <!-- Card body -->
+                <div class="card-body">
+                    <form class="needs-validation" novalidate>
+                        <!-- ProviderId -->
+                            <div class="form-group mb-3">
+                                <label class="form-control-label">
+                                    <i class="fas fa-hashtag"></i> ProviderId
+                                </label>
+                                <br/>
+                                <button type="button" 
+                                    class="btn btn-outline-primary border-0" 
+                                    data-toggle="modal" 
+                                    data-target="#modal-foreign-key-code-selector">
+                                        <i class="fas fa-hashtag"></i>
+                                </button>
+                                <ul id="ramirezbar-product-providerid-list"
+                                    class="nav nav-pills nav-fill flex-column flex-sm-row" 
+                                    role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-sm-3 mb-md-0 active" 
+                                            data-toggle="tab" 
+                                            href="javascript:void(0)" 
+                                            role="tab" 
+                                            aria-controls="" 
+                                            aria-selected="true">
+                                                Choose a value
+                                        </a>
+                                        <input type="hidden" 
+                                            id="ramirezbar-product-providerid-input"
+                                            value="@ProviderId"/>
+                                    </li>
+                                </ul>
+                                <p class="text-danger text-sm">
+                                    <b>This value is required.</b>
+                                </p>
+                            </div>
+                        <!-- Name -->
+                        <div class="form-group mb-3">
+                            <label for="ramirezbar-product-name-input" class="form-control-label">
+                                <i class="fas fa-font"></i> Name
+                            </label>
+                            <input class="form-control" 
+                                min="1" 
+                                max="200" 
+                                type="text" 
+                                id="ramirezbar-product-name-input" 
+                                value="@Name"
+                                required/>
+                            <div class="invalid-feedback">
+                                    This value is required.
+                                </div>
+                        </div>
+                        <!-- Stock -->
+                        <div class="form-group mb-3">
+                            <label for="ramirezbar-product-stock-input" class="form-control-label">
+                                <i class="fas fa-divide"></i> 
+                                Stock
+                            </label>
+                            <input class="form-control" 
+                                type="number" 
+                                id="ramirezbar-product-stock-input" 
+                                value="@Stock" 
+                                min="0" 
+                                max="9999" 
+                                step="1" 
+                                pattern="[^0-9]"
+                                />
+                            
+                        </div>
+                        <!-- Photo -->
+                        <div class="form-group">
+                            <label class="form-control-label">
+                                <i class="fas fa-file"></i> Photo
+                            </label>
+                            <br/>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview img-thumbnail" 
+                                    data-trigger="fileinput" 
+                                    style="width: 200px; height: 150px;">
+                                </div>
+                                <div>
+                                    <span class="btn btn-primary btn-file">
+                                        <span class="fileinput-new">Select file</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" 
+                                            min="1" 
+                                            max="8000" 
+                                            id="ramirezbar-product-photo-input" 
+                                            value=""/>
+                                    </span>
+                                    <a href="#" class="btn btn-outline-danger fileinput-exists" data-dismiss="fileinput">
+                                        Remove
+                                    </a>
+                                </div>
+                            </div>
+                            <input type="hidden" 
+                                min="1" 
+                                max="8000" 
+                                id="ramirezbar-product-photo-readonly" 
+                                value="@Photo"/>
+                            <br />
+                            @if (@Photo == ""){
+                                
+                            }
+                            else
+                            {
+                                <a class="btn btn-info btn-sm"
+                                    href="@Photo"
+                                    download>
+                                        <i class="fas fa-download"></i>
+                                        Download file
+                                </a>
+                            }
+                        </div>
+                        
+                        <!-- Buttons -->
+                        <div class="row justify-content-between">
+                            <button class="btn btn-primary text-nowrap ml-3 mt-4" 
+                                type="submit">
+                                    <i class="@NonQueryIcon"></i> 
+                                    @NonQueryText
+                            </button>
+                            <a href="/RamirezBar/ProductQueryPage" 
+                                class="btn btn-outline-primary col-auto mr-3 mt-4 text-nowrap">
+                                    <i class="fas fa-angle-left"></i> 
+                                    Go back
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Card footer -->
+            <div class="card-footer py-2">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ForeignKeyDropDown selector in Modal style -->
+<div class="row">
+    <div class="col-md-4">
+        <!-- Modal -->
+        <div class="modal fade" id="modal-foreign-key-code-selector" tabindex="-1" role="dialog" aria-labelledby="modal-foreign-key-selector" aria-hidden="true">
+            <div class="modal-dialog modal-secondary modal-dialog-centered modal-" role="document">
+                <!-- Modal content -->
+                <div class="modal-content bg-gradient-secondary">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-primary">
+                            Choose a ForeignKeyDropDown value <i class="fas fa-hashtag"></i>
+                         </h6>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative">
+                                    <select id="ramirezbar-product-foreignkeydropdown-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
+                                        <option value="0"></option> <!--This must be empty-->
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Phone code Selector in Modal style -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="modal fade" id="modal-phone-code-selector" tabindex="-1" role="dialog" aria-labelledby="modal-phone-code-selector" aria-hidden="true">
+            <div class="modal-dialog modal-secondary modal-dialog-centered modal-" role="document">
+                <div class="modal-content bg-gradient-secondary">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-primary">Choose your phone code <i class="fas fa-globe-americas"></i></h6>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <div class="input-group input-group-merge input-group-alternative">
+                                    <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Country (+Code)" data-allow-reset="true">
+                                        <option></option> <!--This must be empty-->
+                                        <option>Argentina (+54)</option>
+                                        <option>USA (+1)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary ml-auto" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/BasicCore/jquery-3.6.1.min.js"></script>
+<script src="/assets/vendor/quill/dist/quill.min.js"></script>
+<script src="/js/RamirezBar/Product/jQuery/ProductNonQuery_jQuery.js"></script>

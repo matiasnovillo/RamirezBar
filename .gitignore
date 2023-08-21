@@ -1,0 +1,7 @@
+/.vs
+/RamirezBar/obj
+/RamirezBar/bin
+/RamirezBar/node_modules
+/RamirezBar/wwwroot/Downloads
+/RamirezBar/wwwroot/Uploads
+/RamirezBar/app.config
