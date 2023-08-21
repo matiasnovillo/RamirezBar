@@ -13,7 +13,7 @@
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:27:19
+//Last modification on: 21/08/2023 6:20:18
 
 //Create a formdata object
 var formData = new FormData();
@@ -42,6 +42,7 @@ $(document).ready(function () {
                 //TableStateId
                 formData.append("ramirezbar-tablestate-tablestateid-input", $("#ramirezbar-tablestate-tablestateid-input").val());
 
+                formData.append("ramirezbar-tablestate-name-input", $("#ramirezbar-tablestate-name-input").val());
                 
 
                 //Setup request

@@ -23,7 +23,7 @@ using System.IO;
  * 
  */
 
-//Last modification on: 20/08/2023 23:27:19
+//Last modification on: 21/08/2023 6:20:18
 
 namespace RamirezBar.Areas.RamirezBar.Services
 {
@@ -32,7 +32,7 @@ namespace RamirezBar.Areas.RamirezBar.Services
     /// Name:              C# Service. <br/>
     /// Function:          Allow you to separate data contract stored in C# model from business with your clients. <br/>
     /// Also, allow dependency injection inside controllers/web apis<br/>
-    /// Last modification: 20/08/2023 23:27:19
+    /// Last modification: 21/08/2023 6:20:18
     /// </summary>
     public partial class TableStateService : ITableState
     {
@@ -211,6 +211,11 @@ namespace RamirezBar.Areas.RamirezBar.Services
                 <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px; font-weight: 600;"">UserLastModificationId&nbsp;&nbsp;&nbsp;</span>
             </font>
             <div style=""height: 10px; line-height: 10px; font-size: 8px;"">&nbsp;</div>
+        </th><th align=""left"" valign=""top"" style=""border-width: 1px; border-style: solid; border-color: #e8e8e8; border-top: none; border-left: none; border-right: none;"">
+            <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px; font-weight: 600;"">
+                <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px; font-weight: 600;"">Name&nbsp;&nbsp;&nbsp;</span>
+            </font>
+            <div style=""height: 10px; line-height: 10px; font-size: 8px;"">&nbsp;</div>
         </th>
     </tr>
     {RowsAsHTML}
@@ -270,6 +275,11 @@ namespace RamirezBar.Areas.RamirezBar.Services
                     dtColumnUserLastModificationIdFordtTableStateCopy.ColumnName = "UserLastModificationId";
                     dtTableStateCopy.Columns.Add(dtColumnUserLastModificationIdFordtTableStateCopy);
 
+                    DataColumn dtColumnNameFordtTableStateCopy = new DataColumn();
+                    dtColumnNameFordtTableStateCopy.DataType = typeof(string);
+                    dtColumnNameFordtTableStateCopy.ColumnName = "Name";
+                    dtTableStateCopy.Columns.Add(dtColumnNameFordtTableStateCopy);
+
                     
                 #endregion
 
@@ -328,6 +338,11 @@ namespace RamirezBar.Areas.RamirezBar.Services
                     dtColumnUserLastModificationIdFordtTableStateCopy.DataType = typeof(string);
                     dtColumnUserLastModificationIdFordtTableStateCopy.ColumnName = "UserLastModificationId";
                     dtTableStateCopy.Columns.Add(dtColumnUserLastModificationIdFordtTableStateCopy);
+
+                    DataColumn dtColumnNameFordtTableStateCopy = new DataColumn();
+                    dtColumnNameFordtTableStateCopy.DataType = typeof(string);
+                    dtColumnNameFordtTableStateCopy.ColumnName = "Name";
+                    dtTableStateCopy.Columns.Add(dtColumnNameFordtTableStateCopy);
 
                     
                     #endregion

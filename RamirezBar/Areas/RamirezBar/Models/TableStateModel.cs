@@ -27,9 +27,9 @@ namespace RamirezBar.Areas.RamirezBar.Models
     /// Function:          Allow you to manipulate information from database using stored procedures.
     ///                    Also, let you make other related actions with the model in question or
     ///                    make temporal copies with random data. <br/>
-    /// Fields:            6 <br/> 
+    /// Fields:            7 <br/> 
     /// Sub-models:      1 models <br/>
-    /// Last modification: 20/08/2023 23:27:19
+    /// Last modification: 21/08/2023 6:20:18
     /// </summary>
     [Serializable]
     public partial class TableStateModel
@@ -69,6 +69,9 @@ namespace RamirezBar.Areas.RamirezBar.Models
         ///</summary>
         [Library.ModelAttributeValidator.Key("UserLastModificationId")]
         public int UserLastModificationId { get; set; }
+
+        [Library.ModelAttributeValidator.String("Name", true, 1, 100, "")]
+        public string Name { get; set; }
         #endregion
 
         #region Sub-lists
@@ -81,7 +84,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Function:     Create fastly this model with field TableStateId = 0 <br/>
         /// Note 1:       Generally used to have fast access to functions of object. <br/>
         /// Note 2:       Need construction with [new] reserved word, as all constructors. <br/>
-        /// Fields:       6 <br/> 
+        /// Fields:       7 <br/> 
         /// Dependencies: 1 models depend on this model <br/>
         /// </summary>
         public TableStateModel()
@@ -101,7 +104,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with stored information in database using TableStateId <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       6 <br/> 
+        /// Fields:       7 <br/> 
         /// Dependencies: 1 models depend on this model <br/>
         /// </summary>
         public TableStateModel(int TableStateId)
@@ -137,6 +140,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					this.DateTimeLastModification = tablestate.DateTimeLastModification;
 					this.UserCreationId = tablestate.UserCreationId;
 					this.UserLastModificationId = tablestate.UserLastModificationId;
+					this.Name = tablestate.Name;
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -147,10 +151,10 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model with filled parameters <br/>
         /// Note:         Raise exception on duplicated IDs <br/>
-        /// Fields:       6 <br/> 
+        /// Fields:       7 <br/> 
         /// Dependencies: 1 models depend on this model <br/>
         /// </summary>
-        public TableStateModel(int TableStateId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId)
+        public TableStateModel(int TableStateId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name)
         {
             try
             {
@@ -164,6 +168,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				this.DateTimeLastModification = DateTimeLastModification;
 				this.UserCreationId = UserCreationId;
 				this.UserLastModificationId = UserLastModificationId;
+				this.Name = Name;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -172,7 +177,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Stack:        3 <br/>
         /// Function:     Create this model (copy) using the given model (original), tablestate, passed by parameter. <br/>
         /// Note:         This constructor is generally used to execute functions using the copied fields <br/>
-        /// Fields:       6 <br/> 
+        /// Fields:       7 <br/> 
         /// Dependencies: 1 models depend on this model <br/>
         /// </summary>
         public TableStateModel(TableStateModel tablestate)
@@ -189,6 +194,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				DateTimeLastModification = tablestate.DateTimeLastModification;
 				UserCreationId = tablestate.UserCreationId;
 				UserLastModificationId = tablestate.UserLastModificationId;
+				Name = tablestate.Name;
             }
             catch (Exception ex) { throw ex; }
         }
@@ -296,6 +302,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 					TableStateModel.DateTimeLastModification = tablestate.DateTimeLastModification;
 					TableStateModel.UserCreationId = tablestate.UserCreationId;
 					TableStateModel.UserLastModificationId = tablestate.UserLastModificationId;
+					TableStateModel.Name = tablestate.Name;
                 }
 
                 return TableStateModel;
@@ -341,23 +348,23 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
                 tablestateSelectAllPaged.TotalPages = Library.Math.Divide(tablestateSelectAllPaged.TotalRows, tablestateSelectAllPaged.RowsPerPage, Library.Math.RoundType.RoundUp);
 
-                //Loop through lists and sublists
-                for (int i = 0; i < tablestateSelectAllPaged.lstTableStateModel.Count; i++)
-                {
-                    DynamicParameters dpForTableModel = new DynamicParameters();
-                    dpForTableModel.Add("TableStateId", tablestateSelectAllPaged.lstTableStateModel[i].TableStateId, DbType.Int32, ParameterDirection.Input);
-                    using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
-                    {
-                        List<TableModel> lstTableModel = new List<TableModel>();
-                        lstTableModel = (List<TableModel>)sqlConnection.Query<TableModel>("[dbo].[RamirezBar.Table.SelectAllByTableStateIdCustom]", dpForTableModel, commandType: CommandType.StoredProcedure);
+                ////Loop through lists and sublists
+                //for (int i = 0; i < tablestateSelectAllPaged.lstTableStateModel.Count; i++)
+                //{
+                //    DynamicParameters dpForTableModel = new DynamicParameters();
+                //    dpForTableModel.Add("TableStateId", tablestateSelectAllPaged.lstTableStateModel[i].TableStateId, DbType.Int32, ParameterDirection.Input);
+                //    using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+                //    {
+                //        List<TableModel> lstTableModel = new List<TableModel>();
+                //        lstTableModel = (List<TableModel>)sqlConnection.Query<TableModel>("[dbo].[RamirezBar.Table.SelectAllByTableStateIdCustom]", dpForTableModel, commandType: CommandType.StoredProcedure);
                         
-                        //Add list item inside another list
-                        foreach (var TableModel in lstTableModel)
-                        {
-                            tablestateSelectAllPaged.lstTableStateModel[i].lstTableModel.Add(TableModel);
-                        }
-                    }
-                }
+                //        //Add list item inside another list
+                //        foreach (var TableModel in lstTableModel)
+                //        {
+                //            tablestateSelectAllPaged.lstTableStateModel[i].lstTableModel.Add(TableModel);
+                //        }
+                //    }
+                //}
                 
                 
 
@@ -385,6 +392,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -418,6 +426,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", tablestate.DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", tablestate.UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", tablestate.UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", tablestate.Name, DbType.String, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
                 
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -438,7 +447,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull insertion in database
         /// </summary>
         /// <returns>The ID of the last registry inserted in TableState table</returns>
-        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId)
+        public int Insert(bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name)
         {
             try
             {
@@ -451,6 +460,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
                 dp.Add("NewEnteredId", NewEnteredId, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -485,6 +495,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -519,6 +530,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", tablestate.DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", tablestate.UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", tablestate.UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", tablestate.Name, DbType.String, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -539,7 +551,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
         /// Note: Raise exception when the function did not made a succesfull update in database
         /// </summary>
         /// <returns>The number of rows updated in TableState table</returns>
-        public int UpdateByTableStateId(int TableStateId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId)
+        public int UpdateByTableStateId(int TableStateId, bool Active, DateTime DateTimeCreation, DateTime DateTimeLastModification, int UserCreationId, int UserLastModificationId, string Name)
         {
             try
             {
@@ -553,6 +565,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				dp.Add("DateTimeLastModification", DateTimeLastModification, DbType.DateTime, ParameterDirection.Input);
 				dp.Add("UserCreationId", UserCreationId, DbType.Int32, ParameterDirection.Input);
 				dp.Add("UserLastModificationId", UserLastModificationId, DbType.Int32, ParameterDirection.Input);
+				dp.Add("Name", Name, DbType.String, ParameterDirection.Input);
                 dp.Add("RowsAffected", RowsAffected, DbType.Int32, ParameterDirection.Output);
         
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
@@ -678,7 +691,8 @@ namespace RamirezBar.Areas.RamirezBar.Models
 				$"DateTimeCreation: {DateTimeCreation}, " +
 				$"DateTimeLastModification: {DateTimeLastModification}, " +
 				$"UserCreationId: {UserCreationId}, " +
-				$"UserLastModificationId: {UserLastModificationId}";
+				$"UserLastModificationId: {UserLastModificationId}, " +
+				$"Name: {Name}";
         }
 
         public string ToStringOnlyValuesForHTML()
@@ -718,6 +732,12 @@ namespace RamirezBar.Areas.RamirezBar.Models
         <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
         <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
             <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{UserLastModificationId}</span>
+        </font>
+        <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
+    </td><td align=""left"" valign=""top"">
+        <div style=""height: 12px; line-height: 12px; font-size: 10px;"">&nbsp;</div>
+        <font face=""'Source Sans Pro', sans-serif"" color=""#000000"" style=""font-size: 20px; line-height: 28px;"">
+            <span style=""font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #000000; font-size: 20px; line-height: 28px;"">{Name}</span>
         </font>
         <div style=""height: 40px; line-height: 40px; font-size: 38px;"">&nbsp;</div>
     </td>

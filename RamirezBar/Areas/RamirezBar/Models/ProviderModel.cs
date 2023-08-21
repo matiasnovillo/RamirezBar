@@ -368,23 +368,23 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
                 providerSelectAllPaged.TotalPages = Library.Math.Divide(providerSelectAllPaged.TotalRows, providerSelectAllPaged.RowsPerPage, Library.Math.RoundType.RoundUp);
 
-                //Loop through lists and sublists
-                for (int i = 0; i < providerSelectAllPaged.lstProviderModel.Count; i++)
-                {
-                    DynamicParameters dpForProductModel = new DynamicParameters();
-                    dpForProductModel.Add("ProviderId", providerSelectAllPaged.lstProviderModel[i].ProviderId, DbType.Int32, ParameterDirection.Input);
-                    using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
-                    {
-                        List<ProductModel> lstProductModel = new List<ProductModel>();
-                        lstProductModel = (List<ProductModel>)sqlConnection.Query<ProductModel>("[dbo].[RamirezBar.Product.SelectAllByProviderIdCustom]", dpForProductModel, commandType: CommandType.StoredProcedure);
+                ////Loop through lists and sublists
+                //for (int i = 0; i < providerSelectAllPaged.lstProviderModel.Count; i++)
+                //{
+                //    DynamicParameters dpForProductModel = new DynamicParameters();
+                //    dpForProductModel.Add("ProviderId", providerSelectAllPaged.lstProviderModel[i].ProviderId, DbType.Int32, ParameterDirection.Input);
+                //    using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+                //    {
+                //        List<ProductModel> lstProductModel = new List<ProductModel>();
+                //        lstProductModel = (List<ProductModel>)sqlConnection.Query<ProductModel>("[dbo].[RamirezBar.Product.SelectAllByProviderIdCustom]", dpForProductModel, commandType: CommandType.StoredProcedure);
                         
-                        //Add list item inside another list
-                        foreach (var ProductModel in lstProductModel)
-                        {
-                            providerSelectAllPaged.lstProviderModel[i].lstProductModel.Add(ProductModel);
-                        }
-                    }
-                }
+                //        //Add list item inside another list
+                //        foreach (var ProductModel in lstProductModel)
+                //        {
+                //            providerSelectAllPaged.lstProviderModel[i].lstProductModel.Add(ProductModel);
+                //        }
+                //    }
+                //}
                 
                 
 

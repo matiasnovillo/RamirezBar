@@ -20,7 +20,7 @@ import "bootstrap-notify";
 
 //Stack: 10
 
-//Last modification on: 20/08/2023 23:27:19
+//Last modification on: 21/08/2023 6:20:18
 
 //Set default values
 let LastTopDistance: number = 0;
@@ -75,6 +75,11 @@ class TableStateQuery {
         <th scope="col">
             <button value="UserLastModificationId" class="btn btn-outline-secondary btn-sm" type="button">
                 UserLastModificationId
+            </button>
+        </th>
+        <th scope="col">
+            <button value="Name" class="btn btn-outline-secondary btn-sm" type="button">
+                Name
             </button>
         </th>
         
@@ -177,6 +182,11 @@ class TableStateQuery {
             <i class="fas fa-key"></i> ${row.UserLastModificationId}
         </strong>
     </td>
+    <td class="text-left">
+        <strong><i class="fas fa-font">
+            </i> ${row.Name}
+        </strong>
+    </td>
     
     <!-- Actions -->
     <td class="text-right">
@@ -234,6 +244,10 @@ class TableStateQuery {
                         <br/>
                         <span class="text-white mb-4">
                            UserLastModificationId <i class="fas fa-key"></i> ${row.UserLastModificationId}
+                        </span>
+                        <br/>
+                        <span class="text-white mb-4">
+                           Name <i class="fas fa-font"></i> ${row.Name}
                         </span>
                         <br/>
                         

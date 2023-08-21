@@ -15,7 +15,7 @@ import { TableModel } from "../../Table/TsModels/Table_TsModel";
  * 
 */
 
-//6 fields | Sub-models: 1 models  | Last modification on: 20/08/2023 23:27:19 | Stack: 9
+//7 fields | Sub-models: 1 models  | Last modification on: 21/08/2023 6:20:18 | Stack: 9
 
 export class TableStateModel {
 
@@ -26,6 +26,7 @@ export class TableStateModel {
 	DateTimeLastModification?: string | string[] | number | undefined;
 	UserCreationId?: number;
 	UserLastModificationId?: number;
+	Name?: string | string[] | number | undefined;
     lstTableModel?: TableModel[] | undefined;
     
 

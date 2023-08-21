@@ -25,7 +25,7 @@ using System.IO;
  * 
  */
 
-//Last modification on: 20/08/2023 23:27:19
+//Last modification on: 21/08/2023 6:20:18
 
 namespace RamirezBar.Areas.RamirezBar.Controllers
 {
@@ -33,7 +33,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
     /// Stack:             6<br/>
     /// Name:              C# Web API Controller. <br/>
     /// Function:          Allow you to intercept HTPP calls and comunicate with his C# Service using dependency injection.<br/>
-    /// Last modification: 20/08/2023 23:27:19
+    /// Last modification: 21/08/2023 6:20:18
     /// </summary>
     [ApiController]
     [TableStateFilter]
@@ -165,6 +165,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                 //TableStateId
                 int TableStateId = Convert.ToInt32(HttpContext.Request.Form["ramirezbar-tablestate-tablestateid-input"]);
                 
+                string Name = HttpContext.Request.Form["ramirezbar-tablestate-name-input"];
                 
                 #endregion
 
@@ -181,6 +182,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                         UserLastModificationId = UserId,
                         DateTimeCreation = DateTime.Now,
                         DateTimeLastModification = DateTime.Now,
+                        Name = Name,
                         
                     };
                     
@@ -193,6 +195,7 @@ namespace RamirezBar.Areas.RamirezBar.Controllers
                     
                     TableStateModel.UserLastModificationId = UserId;
                     TableStateModel.DateTimeLastModification = DateTime.Now;
+                    TableStateModel.Name = Name;
                                        
 
                     RowsAffected = _ITableState.UpdateByTableStateId(TableStateModel);

@@ -1304,4 +1304,4 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=tablestatequery.bundle.js.map
+//# sourceMappingURL=tablestatejquery.bundle.js.map

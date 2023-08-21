@@ -8,6 +8,7 @@
     string NonQueryIcon = "";
 
     int TableStateId;
+    string Name;
     
 
     if(HttpContext.Request.QueryString.Value.Contains("?TableStateId=0"))
@@ -16,6 +17,7 @@
         NonQueryIcon = "fas fa-plus";
 
         TableStateId = 0;
+        Name = "";
         
     }
     else
@@ -27,6 +29,7 @@
         (Convert.ToInt32(HttpContext.Request.QueryString.Value.Replace("?TableStateId=","")));
 
         TableStateId = TableStateModel.TableStateId;
+        Name = TableStateModel.Name;
         
     }
 
@@ -42,7 +45,7 @@
  */
     
 //Stack: 11
-//Last modification on: 20/08/2023 23:27:19
+//Last modification on: 21/08/2023 6:20:18
 
 }
 <!-- Header -->
@@ -111,6 +114,22 @@
                 <!-- Card body -->
                 <div class="card-body">
                     <form class="needs-validation" novalidate>
+                        <!-- Name -->
+                        <div class="form-group mb-3">
+                            <label for="ramirezbar-tablestate-name-input" class="form-control-label">
+                                <i class="fas fa-font"></i> Name
+                            </label>
+                            <input class="form-control" 
+                                min="1" 
+                                max="100" 
+                                type="text" 
+                                id="ramirezbar-tablestate-name-input" 
+                                value="@Name"
+                                required/>
+                            <div class="invalid-feedback">
+                                    This value is required.
+                                </div>
+                        </div>
                         
                         <!-- Buttons -->
                         <div class="row justify-content-between">
