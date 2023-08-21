@@ -12,6 +12,8 @@ using System;
 using SixLaborsCaptcha.Mvc.Core;
 using RamirezBar.Areas.BasicCulture.Services;
 using RamirezBar.Areas.BasicCulture.Interfaces;
+using RamirezBar.Areas.RamirezBar.Interfaces;
+using RamirezBar.Areas.RamirezBar.Services;
 
 namespace RamirezBar
 {
@@ -57,6 +59,13 @@ namespace RamirezBar
             services.AddScoped<IMenu, MenuService>();
             services.AddScoped<IRoleMenu, RoleMenuService>();
             services.AddScoped<IRole, RoleService>();
+            //Area: RamirezBar
+            services.AddScoped<IProductCategory, ProductCategoryService>();
+            services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<IProvider, ProviderService>();
+            services.AddScoped<ITableState, TableStateService>();
+            services.AddScoped<ITable, TableService>();
+            services.AddScoped<ITableType, TableTypeService>();
             //Session configuration
             services.AddMvc();
             services.AddSession(options => {

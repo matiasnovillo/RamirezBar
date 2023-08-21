@@ -92,7 +92,26 @@
          rolemenutsmodel: ["./wwwroot/ts/CMSCore/RoleMenu/TsModels/RoleMenu_TsModel"],
          rolemenujquery: ["./wwwroot/ts/CMSCore/RoleMenu/jQuery/RoleMenuQuery_jQuery"],
          rolemenuselectallpaged: ["./wwwroot/ts/CMSCore/RoleMenu/DTOs/rolemenuSelectAllPaged"],
-         pagepermissions: ["./wwwroot/ts/CMSCore/PagePermissions"]
+         pagepermissions: ["./wwwroot/ts/CMSCore/PagePermissions"],
+
+         productcategorytsmodel: ["./wwwroot/ts/RamirezBar/ProductCategory/TsModels/ProductCategory_TsModel"],  //Area: RamirezBar
+         productcategoryjquery: ["./wwwroot/ts/RamirezBar/ProductCategory/jQuery/ProductCategoryQuery_jQuery"],
+         productcategoryselectallpaged: ["./wwwroot/ts/RamirezBar/ProductCategory/DTOs/productcategorySelectAllPaged"],
+         producttsmodel: ["./wwwroot/ts/RamirezBar/Product/TsModels/Product_TsModel"],
+         productquery: ["./wwwroot/ts/RamirezBar/Product/jQuery/ProductQuery_jQuery"],
+         productselectallpaged: ["./wwwroot/ts/RamirezBar/Product/DTOs/productSelectAllPaged"],
+         providertsmodel: ["./wwwroot/ts/RamirezBar/Provider/TsModels/Provider_TsModel"],
+         providerquery: ["./wwwroot/ts/RamirezBar/Provider/jQuery/ProviderQuery_jQuery"],
+         providerselectallpaged: ["./wwwroot/ts/RamirezBar/Provider/DTOs/providerSelectAllPaged"],
+         tablestatetsmodel: ["./wwwroot/ts/RamirezBar/TableState/TsModels/TableState_TsModel"],
+         tablestatequery: ["./wwwroot/ts/RamirezBar/TableState/jQuery/TableStateQuery_jQuery"],
+         tablestateselectallpaged: ["./wwwroot/ts/RamirezBar/TableState/DTOs/tablestateSelectAllPaged"],
+         tabletsmodel: ["./wwwroot/ts/RamirezBar/Table/TsModels/Table_TsModel"],
+         tablequery: ["./wwwroot/ts/RamirezBar/Table/jQuery/TableQuery_jQuery"],
+         tableselectallpaged: ["./wwwroot/ts/RamirezBar/Table/DTOs/tableSelectAllPaged"],
+         tabletypetsmodel: ["./wwwroot/ts/RamirezBar/TableType/TsModels/TableType_TsModel"],
+         tabletypequery: ["./wwwroot/ts/RamirezBar/TableType/jQuery/TableTypeQuery_jQuery"],
+         tabletypeselectallpaged: ["./wwwroot/ts/RamirezBar/TableType/DTOs/tabletypeSelectAllPaged"]
      },
      output: {
          filename: "[name].bundle.js",                       //Path to save bundles: __dirname + "/wwwroot/dist" (__dirname is a Node.js variable)
