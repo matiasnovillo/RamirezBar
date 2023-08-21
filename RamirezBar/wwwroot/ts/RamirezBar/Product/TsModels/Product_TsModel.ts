@@ -31,7 +31,7 @@ export class ProductModel {
 	Stock?: number;
 	Photo?: string | string[] | number | undefined;
 	Price?: number;
-    
+    ProviderName?: string | string[] | number | undefined;
 
     //Queries
     static Select1ByProductId(ProductId: number) {

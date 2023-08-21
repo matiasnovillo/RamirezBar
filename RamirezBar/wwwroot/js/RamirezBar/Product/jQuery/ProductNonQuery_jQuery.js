@@ -34,7 +34,15 @@ $("#ramirezbar-product-photo-input").on("change", function (e) {
 
 //LOAD EVENT
 $(document).ready(function () {
-    
+    //ProviderId select tag
+    $("#ramirezbar-product-providerid-select").on("change", function (e) {
+        $("#ramirezbar-product-providerid-list").html(`<li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" data-toggle="tab" href="javascript:void(0)" role="tab" aria-controls="" aria-selected="true">
+                ${$("#ramirezbar-product-providerid-select option:selected").text()}
+            </a>
+            <input type="hidden" id="ramirezbar-product-providerid-input" value="${$("#ramirezbar-product-providerid-select option:selected").val()}"/>
+        </li>`);
+    });
     
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName("needs-validation");

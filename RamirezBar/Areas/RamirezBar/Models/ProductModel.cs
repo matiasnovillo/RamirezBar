@@ -84,6 +84,8 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
         [Library.ModelAttributeValidator.Int("Price", false, 0, 999999)]
         public int Price { get; set; }
+
+        public string ProviderName { get; set; }
         #endregion
 
         #region Sub-lists
@@ -366,7 +368,7 @@ namespace RamirezBar.Areas.RamirezBar.Models
 
                 using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
                 {
-                    productSelectAllPaged.lstProductModel = (List<ProductModel>)sqlConnection.Query<ProductModel>("[dbo].[RamirezBar.Product.SelectAllPaged]", dp, commandType: CommandType.StoredProcedure);
+                    productSelectAllPaged.lstProductModel = (List<ProductModel>)sqlConnection.Query<ProductModel>("[dbo].[RamirezBar.Product.SelectAllPagedCustom]", dp, commandType: CommandType.StoredProcedure);
                     productSelectAllPaged.TotalRows = dp.Get<int>("TotalRows");
                 }
 

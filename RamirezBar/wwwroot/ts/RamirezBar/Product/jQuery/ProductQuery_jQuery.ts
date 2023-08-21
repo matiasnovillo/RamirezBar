@@ -53,38 +53,13 @@ class ProductQuery {
             </button>
         </th>
         <th scope="col">
-            <button value="Active" class="btn btn-outline-secondary btn-sm" type="button">
-                Active
-            </button>
-        </th>
-        <th scope="col">
-            <button value="DateTimeCreation" class="btn btn-outline-secondary btn-sm" type="button">
-                DateTimeCreation
-            </button>
-        </th>
-        <th scope="col">
-            <button value="DateTimeLastModification" class="btn btn-outline-secondary btn-sm" type="button">
-                DateTimeLastModification
-            </button>
-        </th>
-        <th scope="col">
-            <button value="UserCreationId" class="btn btn-outline-secondary btn-sm" type="button">
-                UserCreationId
-            </button>
-        </th>
-        <th scope="col">
-            <button value="UserLastModificationId" class="btn btn-outline-secondary btn-sm" type="button">
-                UserLastModificationId
+            <button value="Name" class="btn btn-outline-secondary btn-sm" type="button">
+                Nombre
             </button>
         </th>
         <th scope="col">
             <button value="ProviderId" class="btn btn-outline-secondary btn-sm" type="button">
-                ProviderId
-            </button>
-        </th>
-        <th scope="col">
-            <button value="Name" class="btn btn-outline-secondary btn-sm" type="button">
-                Name
+                Proveedor
             </button>
         </th>
         <th scope="col">
@@ -93,13 +68,8 @@ class ProductQuery {
             </button>
         </th>
         <th scope="col">
-            <button value="Photo" class="btn btn-outline-secondary btn-sm" type="button">
-                Photo
-            </button>
-        </th>
-        <th scope="col">
             <button value="Price" class="btn btn-outline-secondary btn-sm" type="button">
-                Price
+                Precio
             </button>
         </th>
         
@@ -178,51 +148,19 @@ class ProductQuery {
         <i class="fas fa-key"></i> ${row.ProductId}
     </td>
     <td class="text-left">
-        <strong>
-            <i class="fas fa-toggle-on"></i> ${row.Active == true ? "Active <i class='text-success fas fa-circle'></i>" : "Not active <i class='text-danger fas fa-circle'></i>"}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-calendar"></i> ${row.DateTimeCreation}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-calendar"></i> ${row.DateTimeLastModification}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-key"></i> ${row.UserCreationId}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-key"></i> ${row.UserLastModificationId}
-        </strong>
-    </td>
-    <td class="text-left">
-        <strong>
-            <i class="fas fa-key"></i> ${row.ProviderId}
-        </strong>
-    </td>
-    <td class="text-left">
         <strong><i class="fas fa-font">
             </i> ${row.Name}
+        </strong>
+    </td>
+    <td class="text-left">
+        <strong>
+            <i class="fas fa-key"></i> ${row.ProviderName}
         </strong>
     </td>
     <td class="text-left">
         <strong><i class="fas fa-divide">
             </i> ${row.Stock}
         </strong>
-    </td>
-    <td class="text-left">
-        <a href="${row.Photo}">
-            <strong>
-                <i class="fas fa-file"></i> ${row.Photo}
-            </strong>
-        </a>
     </td>
     <td class="text-left">
         <strong><i class="fas fa-divide">
@@ -264,36 +202,18 @@ class ProductQuery {
             <div class="card-body">
                 <div class="row">
                     <div class="col text-truncate">
+                        <img src="${row.Photo}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 150px;">
+                        <br/>
                         <span class="text-white text-light mb-4">
                            ProductId <i class="fas fa-key"></i> ${row.ProductId}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           Active <i class="fas fa-toggle-on"></i> ${row.Active == true ? "Active <i class='text-success fas fa-circle'></i>" : "Not active <i class='text-danger fas fa-circle'></i>"}
+                           Nombre <i class="fas fa-font"></i> ${row.Name}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           DateTimeCreation <i class="fas fa-calendar"></i> ${row.DateTimeCreation}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           DateTimeLastModification <i class="fas fa-calendar"></i> ${row.DateTimeLastModification}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           UserCreationId <i class="fas fa-key"></i> ${row.UserCreationId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           UserLastModificationId <i class="fas fa-key"></i> ${row.UserLastModificationId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           ProviderId <i class="fas fa-key"></i> ${row.ProviderId}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                           Name <i class="fas fa-font"></i> ${row.Name}
+                           Proveedor <i class="fas fa-key"></i> ${row.ProviderName}
                         </span>
                         <br/>
                         <span class="text-white mb-4">
@@ -301,11 +221,7 @@ class ProductQuery {
                         </span>
                         <br/>
                         <span class="text-white mb-4">
-                           Photo <i class="fas fa-file"></i> ${row.Photo}
-                        </span>
-                        <br/>
-                        <span class="text-white mb-4">
-                            Price <i class="fas fa-divide"></i> ${row.Price}
+                            Precio <i class="fas fa-divide"></i> ${row.Price}
                         </span>
                         <br/>
                         

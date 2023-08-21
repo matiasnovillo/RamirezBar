@@ -13,7 +13,8 @@
     int Stock;
     string Photo;
     int Price;
-    
+    string ProviderName;
+
 
     if(HttpContext.Request.QueryString.Value.Contains("?ProductId=0"))
     {
@@ -26,7 +27,7 @@
         Stock = 0;
         Photo = "";
         Price = 0;
-        
+        ProviderName = "Elija un proveedor";
     }
     else
     {
@@ -42,8 +43,12 @@
         Stock = ProductModel.Stock;
         Photo = ProductModel.Photo;
         Price = ProductModel.Price;
-        
+
+        ProviderModel ProviderModel = new ProviderModel(ProductModel.ProviderId);
+        ProviderName = ProviderModel.Name;
     }
+
+    List<ProviderModel> lstProviderModel = new ProviderModel().SelectAllToList();
 
 /*
  * GUID:e6c09dfe-3a3e-461b-b3f9-734aee05fc7b
@@ -129,7 +134,7 @@
                         <!-- ProviderId -->
                             <div class="form-group mb-3">
                                 <label class="form-control-label">
-                                    <i class="fas fa-hashtag"></i> ProviderId
+                                    <i class="fas fa-hashtag"></i> Proveedor
                                 </label>
                                 <br/>
                                 <button type="button" 
@@ -148,7 +153,7 @@
                                             role="tab" 
                                             aria-controls="" 
                                             aria-selected="true">
-                                                Choose a value
+                                                @ProviderName
                                         </a>
                                         <input type="hidden" 
                                             id="ramirezbar-product-providerid-input"
@@ -162,7 +167,7 @@
                         <!-- Name -->
                         <div class="form-group mb-3">
                             <label for="ramirezbar-product-name-input" class="form-control-label">
-                                <i class="fas fa-font"></i> Name
+                                <i class="fas fa-font"></i> Nombre
                             </label>
                             <input class="form-control" 
                                 min="1" 
@@ -195,7 +200,7 @@
                         <!-- Photo -->
                         <div class="form-group">
                             <label class="form-control-label">
-                                <i class="fas fa-file"></i> Photo
+                                <i class="fas fa-file"></i> Foto
                             </label>
                             <br/>
                             <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -241,7 +246,7 @@
                         <div class="form-group mb-3">
                             <label for="ramirezbar-product-price-input" class="form-control-label">
                                 <i class="fas fa-divide"></i> 
-                                Price
+                                Precio
                             </label>
                             <input class="form-control" 
                                 type="number" 
@@ -278,7 +283,7 @@
     </div>
 </div>
 
-<!-- ForeignKeyDropDown selector in Modal style -->
+<!-- ProviderId selector in Modal style -->
 <div class="row">
     <div class="col-md-4">
         <!-- Modal -->
@@ -295,8 +300,14 @@
                         <form role="form">
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative">
-                                    <select id="ramirezbar-product-foreignkeydropdown-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
+                                    <select id="ramirezbar-product-providerid-select" class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Choose value" data-allow-reset="true">
                                         <option value="0"></option> <!--This must be empty-->
+                                        @{
+                                            foreach (ProviderModel ProviderModel in lstProviderModel)
+                                            {
+                                                <option value="@ProviderModel.ProviderId" >@ProviderModel.Name</option>
+                                            }
+                                        }
                                     </select>
                                 </div>
                             </div>
