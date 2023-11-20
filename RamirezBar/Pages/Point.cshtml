@@ -1,0 +1,76 @@
+﻿@page
+@model PointModel
+@{
+}
+<div class="page-header">
+          <div class="page-header-image" style="background-image: url('/img/RamirezBar/HP1.jpeg')"></div>
+          <div class="container">
+            <div class="row">
+                <div class="col-lg-2">&nbsp;</div>
+              <div class="col-lg-8 mr-auto text-left d-flex justify-content-center flex-column">
+                <!-- Card -->
+                <div class="card bg-default">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate>
+                            <!-- DNI -->
+                            <div class="form-group mb-3">
+                                <label for="ramirezbar-point-dni-input" class="form-control-label text-white">
+                                    DNI (solo números)
+                                </label>
+                                <input class="form-control" 
+                                    type="number" 
+                                    id="ramirezbar-point-dni-input" 
+                                    min="0" 
+                                    max="2147483647" 
+                                    step="1" 
+                                    pattern="[^0-9]"
+                                    placeholder="DNI"
+                                    />
+                            
+                            </div>
+                            <!-- Point -->
+                            <div class="form-group mb-3">
+                                <label for="ramirezbar-point-point-input" class="form-control-label text-white">
+                                    Puntos a cargar
+                                </label>
+                                <input class="form-control" 
+                                    type="number" 
+                                    id="ramirezbar-point-point-input" 
+                                    min="0" 
+                                    max="2000000" 
+                                    step="1" 
+                                    pattern="[^0-9]"
+                                    placeholder="Puntos a cargar"
+                                    />
+                            
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="ramirezbar-point-dni-input" class="form-control-label text-white">
+                                    Código (lo ingresa el cajero/a)
+                                </label>
+                                <input class="form-control" 
+                                    type="password" 
+                                    id="ramirezbar-point-code-input" 
+                                    placeholder="Código"
+                                    />
+                            
+                            </div>
+                            <!-- Buttons -->
+                            <div class="row justify-content-between">
+                                <button class="btn btn-primary text-nowrap ml-3 mt-4" 
+                                    type="submit">
+                                        Cargar puntos
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-2">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+
+<script src="/js/BasicCore/jquery-3.6.1.min.js"></script>
+<script src="/js/RamirezBar/Point/jQuery/PointNonQuery_jQuery_Index.js"></script>

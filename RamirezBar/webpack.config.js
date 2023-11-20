@@ -94,24 +94,9 @@
          rolemenuselectallpaged: ["./wwwroot/ts/CMSCore/RoleMenu/DTOs/rolemenuSelectAllPaged"],
          pagepermissions: ["./wwwroot/ts/CMSCore/PagePermissions"],
 
-         productcategorytsmodel: ["./wwwroot/ts/RamirezBar/ProductCategory/TsModels/ProductCategory_TsModel"],  //Area: RamirezBar
-         productcategoryjquery: ["./wwwroot/ts/RamirezBar/ProductCategory/jQuery/ProductCategoryQuery_jQuery"],
-         productcategoryselectallpaged: ["./wwwroot/ts/RamirezBar/ProductCategory/DTOs/productcategorySelectAllPaged"],
-         producttsmodel: ["./wwwroot/ts/RamirezBar/Product/TsModels/Product_TsModel"],
-         productjquery: ["./wwwroot/ts/RamirezBar/Product/jQuery/ProductQuery_jQuery"],
-         productselectallpaged: ["./wwwroot/ts/RamirezBar/Product/DTOs/productSelectAllPaged"],
-         providertsmodel: ["./wwwroot/ts/RamirezBar/Provider/TsModels/Provider_TsModel"],
-         providerjquery: ["./wwwroot/ts/RamirezBar/Provider/jQuery/ProviderQuery_jQuery"],
-         providerselectallpaged: ["./wwwroot/ts/RamirezBar/Provider/DTOs/providerSelectAllPaged"],
-         tablestatetsmodel: ["./wwwroot/ts/RamirezBar/TableState/TsModels/TableState_TsModel"],
-         tablestatejquery: ["./wwwroot/ts/RamirezBar/TableState/jQuery/TableStateQuery_jQuery"],
-         tablestateselectallpaged: ["./wwwroot/ts/RamirezBar/TableState/DTOs/tablestateSelectAllPaged"],
-         tabletsmodel: ["./wwwroot/ts/RamirezBar/Table/TsModels/Table_TsModel"],
-         tablejquery: ["./wwwroot/ts/RamirezBar/Table/jQuery/TableQuery_jQuery"],
-         tableselectallpaged: ["./wwwroot/ts/RamirezBar/Table/DTOs/tableSelectAllPaged"],
-         tabletypetsmodel: ["./wwwroot/ts/RamirezBar/TableType/TsModels/TableType_TsModel"],
-         tabletypejquery: ["./wwwroot/ts/RamirezBar/TableType/jQuery/TableTypeQuery_jQuery"],
-         tabletypeselectallpaged: ["./wwwroot/ts/RamirezBar/TableType/DTOs/tabletypeSelectAllPaged"]
+         pointtsmodel: ["./wwwroot/ts/RamirezBar/Point/TsModels/Point_TsModel"],  //Area: RamirezBar
+         pointjquery: ["./wwwroot/ts/RamirezBar/Point/jQuery/PointQuery_jQuery"],
+         pointselectallpaged: ["./wwwroot/ts/RamirezBar/Point/DTOs/pointSelectAllPaged"]
      },
      output: {
          filename: "[name].bundle.js",                       //Path to save bundles: __dirname + "/wwwroot/dist" (__dirname is a Node.js variable)

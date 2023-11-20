@@ -60,12 +60,7 @@ namespace RamirezBar
             services.AddScoped<IRoleMenu, RoleMenuService>();
             services.AddScoped<IRole, RoleService>();
             //Area: RamirezBar
-            services.AddScoped<IProductCategory, ProductCategoryService>();
-            services.AddScoped<IProduct, ProductService>();
-            services.AddScoped<IProvider, ProviderService>();
-            services.AddScoped<ITableState, TableStateService>();
-            services.AddScoped<ITable, TableService>();
-            services.AddScoped<ITableType, TableTypeService>();
+            services.AddScoped<IPoint, PointService>();
             //Session configuration
             services.AddMvc();
             services.AddSession(options => {

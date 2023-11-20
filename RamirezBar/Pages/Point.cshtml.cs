@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace RamirezBar.Pages
 {
-    public class IndexModel : PageModel
+    public class PointModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public PointModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
